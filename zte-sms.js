@@ -16,9 +16,10 @@ module.exports = function (RED) {
       const phoneNumber = msg.recipientNumber || config.phoneNumber;
 
       if (!phoneNumber || !modem) {
-        node.status({ fill: 'red', shape: 'ring', text: `Missing ${!modem ? 'modem' : 'phone number'} configuration.` });
+        const errMsg = `Missing ${!modem ? 'modem' : 'phone number'} configuration.`;
+        node.status({ fill: 'red', shape: 'ring', text: errMsg });
         send(msg);
-        done();
+        done(new Error(errMsg));
         return;
       }
 
@@ -32,13 +33,13 @@ module.exports = function (RED) {
         .then((success) => {
           node.status({ fill: success ? 'green' : 'red', shape: 'ring' });
           send(msg);
-          done();
+          success ? done() : done(new Error('SMS not sent.'));
         })
         .catch((err) => {
           node.status({ fill: 'red', shape: 'ring' });
           node.warn(err);
           send(msg);
-          done();
+          done(err);
         })
     });
   };
