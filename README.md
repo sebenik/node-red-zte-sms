@@ -20,7 +20,7 @@ Or install manually: `npm install @zigasebenik/node-red-zte-sms`
 - **Phone number:** phone number of the SMS recipient 
 
 ## Modem properties
-![Modem properties](https://github.com/sebenik/node-red-zte-sms/blob/master/docs/images/zte-sms-properties.png?raw=true)
+![Modem properties](https://github.com/sebenik/node-red-zte-sms/blob/master/docs/images/zte-modem-properties.png?raw=true)
 
 - **Name**: Name of the modem
 - **Modem IP:** ZTE modem IP
