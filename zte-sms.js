@@ -13,18 +13,22 @@ module.exports = function (RED) {
     });
 
     node.on('input', function (msg, send, done) {
-      if (!config.phoneNumber || !modem) {
-        node.status({ fill: 'red', shape: 'ring' });
+      const phoneNumber = msg.recipientNumber || config.phoneNumber;
+
+      if (!phoneNumber || !modem) {
+        node.status({ fill: 'red', shape: 'ring', text: `Missing ${!modem ? 'modem' : 'phone number'} configuration.` });
         send(msg);
         done();
         return;
       }
 
       node.status({ fill: 'yellow', shape: 'ring' });
-      let smsMessage = RED.util.ensureString(
+
+      const smsMessage = RED.util.ensureString(
         node.config.targetType === 'full' ? msg : RED.util.getMessageProperty(msg, node.config.complete)
       );
-      modem.sendSms(config.phoneNumber, smsMessage)
+
+      modem.sendSms(phoneNumber, smsMessage)
         .then((success) => {
           node.status({ fill: success ? 'green' : 'red', shape: 'ring' });
           send(msg);

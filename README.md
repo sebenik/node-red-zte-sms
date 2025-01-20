@@ -25,3 +25,18 @@ Or install manually: `npm install @zigasebenik/node-red-zte-sms`
 - **Name**: Name of the modem
 - **Modem IP:** ZTE modem IP
 - **Modem password:** password for the ZTE modem
+
+## Controlling the phone recipient with incoming message
+
+You can define phone recipient number also through incoming node message instead of defining it in properties, by adding `recipientNumber` key.
+
+#### example
+
+```json
+{
+  payload: "your payload",
+  topic: "your topic",
+  recipientNumber: "123456789"
+}
+```
+
