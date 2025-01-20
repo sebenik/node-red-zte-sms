@@ -1,0 +1,88 @@
+<script type="text/javascript">
+  RED.nodes.registerType('zte-sms-send', {
+    category: 'ZTE',
+    color: '#E9967A',
+    defaults: {
+      name: { value: '_DEFAULT_' },
+      active: { value: true },
+      modem: { value: '', type: 'zte-modem', required: true },
+      complete: { value: 'false', required: true },
+      targetType: { value: undefined },
+      phoneNumber: { value: '', required: true }
+    },
+    inputs: 1,
+    outputs: 0,
+    paletteLabel: 'SMS Send',
+    align: 'right',
+    icon: 'envelope.svg',
+
+    onadd: function() {
+      if (this.name === '_DEFAULT_') {
+        this.name = '';
+        RED.actions.invoke("core:generate-node-names", this, { generateHistory: false });
+      }
+    },
+
+    oneditprepare: function() {
+      $("#node-input-typed-complete").typedInput({
+        default: 'msg',
+        types: ['msg', {
+          value: 'full',
+          label: RED._('node-red:debug.msgobj'),
+          hasValue: false
+        }],
+        typeField: $('#node-input-targetType')
+      });
+
+      if ((this.targetType === "full") || this.complete.toString() === 'true') {
+        $('#node-input-typed-complete').typedInput('type', 'full');
+      } else {
+        const property = (!this.complete || (this.complete === 'false')) ? 'payload' : this.complete.toString();
+        $('#node-input-typed-complete').typedInput('type', 'msg');
+        $('#node-input-typed-complete').typedInput('value', property);
+      }
+      $('#node-input-typed-complete').on('change', () => {
+        if (
+          $('#node-input-typed-complete').typedInput('type') === 'msg' &&
+          $('#node-input-typed-complete').typedInput('value') === ''
+        ) {
+          $('#node-input-typed-complete').typedInput('value', 'payload');
+        }
+      });
+    },
+
+    oneditsave: function () {
+      const type = $('#node-input-typed-complete').typedInput('type');
+      if (type === 'full') {
+        $("#node-input-complete").val("true");
+      } else {
+        $("#node-input-complete").val($("#node-input-typed-complete").typedInput('value'));
+      }
+    },
+  });
+  </script>
+
+<script type="text/html" data-template-name="zte-sms-send">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-modem"><i class="fa fa-terminal"></i> Modem</label>
+    <input id="node-input-modem" type="node-input-modem" style="width: 70%">
+  </div>
+  <div class="form-row">
+    <label for="node-input-typed-complete"><i class="fa fa-list"></i> SMS message</label>
+    <input id="node-input-typed-complete" type="text">
+    <input id="node-input-complete" type="hidden">
+    <input id="node-input-targetType" type="hidden">
+  </div>
+  <div class="form-row">
+    <label for="node-input-phoneNumber"><i class="icon-tag"></i> Phone number</label>
+    <input type="text" id="node-input-phoneNumber">
+  </div>
+</script>
+      
+<script type="text/html" data-help-name="zte-sms-send">
+  <a href="https://github.com/sebenik/node-red-zte-sms?tab=readme-ov-file">Documentation available here.</a>
+</script>

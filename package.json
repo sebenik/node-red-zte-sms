@@ -1,0 +1,37 @@
+{
+  "name": "@zigasebenik/node-red-zte-sms",
+  "version": "1.0.0",
+  "description": "A Node-RED node to send sms messages using ZTE modem.",
+  "dependencies": {
+    "@zigasebenik/zte-sms": "file:../zte-sms"
+  },
+  "author": {
+    "name": "Žiga Šebenik"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "node-red",
+    "zte",
+    "sms",
+    "message",
+    "nodes"
+  ],
+  "bugs": {
+    "url": "https://github.com/sebenik/node-red-zte-sms/issues"
+  },
+  "homepage": "https://github.com/sebenik/node-red-zte-sms",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebenik/node-red-zte-sms"
+  },
+  "engines": {
+    "node": ">=16.15.0"
+  },
+  "node-red": {
+    "version": ">=3.0.0",
+    "nodes": {
+      "zte-modem": "zte-modem.js",
+      "zte-sms-send": "zte-sms.js"
+    }
+  }
+}

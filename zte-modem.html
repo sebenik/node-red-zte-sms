@@ -1,0 +1,35 @@
+<script type="text/javascript">
+  RED.nodes.registerType('zte-modem', {
+      category: 'config',
+
+      credentials: {
+        modemPassword: {type: 'password' },
+      },
+
+      defaults: {
+          name: { value: 'ZTE modem' },
+          modemIP: { value: '192.168.0.1' },
+      },
+
+      label: function() {
+        return this.name || "ZTE modem";
+      },
+    });
+</script>
+
+<script type="text/html" data-template-name="zte-modem">
+  <div class="form-row">
+    <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-config-input-name">
+  </div>
+
+  <div class="form-row">
+    <label for="node-config-input-modemIP"><i class="fa fa-tag"></i> Modem IP</label>
+    <input type="text" id="node-config-input-modemIP">
+  </div>
+
+  <div class="form-row"">
+    <label for="node-config-input-modemPassword"><i class="fa fa-key"></i> Modem password</label>
+    <input type="password" id="node-config-input-modemPassword">
+  </div>
+</script>
