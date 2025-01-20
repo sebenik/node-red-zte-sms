@@ -1,6 +1,6 @@
 {
   "name": "@zigasebenik/node-red-zte-sms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Node-RED node to send sms messages using ZTE modem.",
   "dependencies": {
     "@zigasebenik/zte-sms": "file:../zte-sms"
