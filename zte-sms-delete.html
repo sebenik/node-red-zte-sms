@@ -1,0 +1,40 @@
+<script type="text/javascript">
+  RED.nodes.registerType('zte-sms-delete', {
+    category: 'ZTE',
+    color: '#E9967A',
+    defaults: {
+      name: { value: '_DEFAULT_' },
+      modem: { value: '', type: 'zte-modem', required: true },
+    },
+    inputs: 1,
+    inputLabels: '',
+    paletteLabel: 'SMS Delete',
+    align: 'right',
+    icon: 'font-awesome/fa-trash-o',
+    label: function () {
+      return `${(this.name || 'zte-sms-delete')} \t🖂`;
+    },
+
+    onadd: function() {
+      if (this.name === '_DEFAULT_') {
+        this.name = '';
+        RED.actions.invoke("core:generate-node-names", this, { generateHistory: false });
+      }
+    },
+  });
+      </script>
+  
+  <script type="text/html" data-template-name="zte-sms-delete">
+    <div class="form-row">
+      <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+      <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+      <label for="node-input-modem"><i class="fa fa-wifi"></i> Modem</label>
+      <input id="node-input-modem" type="node-input-modem" style="width: 70%">
+    </div>
+  </script>
+  
+  <script type="text/html" data-help-name="zte-sms-delete">
+    <a href="https://github.com/sebenik/node-red-zte-sms?tab=readme-ov-file">Documentation available here.</a>
+  </script>

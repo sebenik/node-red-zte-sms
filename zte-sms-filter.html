@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  RED.nodes.registerType('zte-sms-filter', {
+    category: 'ZTE',
+    color: '#E9967A',
+    defaults: {
+      name: { value: '_DEFAULT_' },
+      phoneNumberWhiteList: { value: '' },
+    },
+    inputs: 1,
+    inputLabels: '',
+    outputs: 5,
+    outputLabels: ['Read received SMS', 'Unread received SMS', 'Sent SMS', 'Failed sent SMS', 'Draft SMS'],
+    paletteLabel: 'SMS Filter',
+    align: 'right',
+    icon: 'font-awesome/fa-filter',
+    label: function () {
+      return `${(this.name || 'zte-sms-filter')} \t🖂`;
+    },
+
+    onadd: function() {
+      if (this.name === '_DEFAULT_') {
+        this.name = '';
+        RED.actions.invoke("core:generate-node-names", this, { generateHistory: false });
+      }
+    },
+  });
+      </script>
+  
+  <script type="text/html" data-template-name="zte-sms-filter">
+    <div class="form-row">
+      <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+      <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <b>Only output SMS messages from below numbers.</b>
+    <p>To enter multiple numbers, delimit them with ;</p>
+    <div class="form-row">
+      <label for="node-input-phoneNumberWhiteList"><i class="fa fa-mobile"></i> Phone number</label>
+      <input type="text" id="node-input-phoneNumberWhiteList" placeholder="Number">
+    </div>
+  </script>
+  
+  <script type="text/html" data-help-name="zte-sms-filter">
+    <a href="https://github.com/sebenik/node-red-zte-sms?tab=readme-ov-file">Documentation available here.</a>
+  </script>

@@ -28,10 +28,14 @@
     "version": ">=3.0.0",
     "nodes": {
       "zte-modem": "zte-modem.js",
-      "zte-sms-send": "zte-sms.js"
+      "zte-sms-send": "zte-sms-send.js",
+      "zte-sms-check": "zte-sms-check.js",
+      "zte-sms-filter": "zte-sms-filter.js",
+      "zte-sms-mark": "zte-sms-mark.js",
+      "zte-sms-delete": "zte-sms-delete.js"
     }
   },
   "dependencies": {
-    "@zigasebenik/zte-sms": "^1.0.0"
+    "@zigasebenik/zte-sms": "^1.2.2"
   }
 }

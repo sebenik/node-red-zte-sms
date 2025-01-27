@@ -4,17 +4,19 @@
     color: '#E9967A',
     defaults: {
       name: { value: '_DEFAULT_' },
-      active: { value: true },
       modem: { value: '', type: 'zte-modem', required: true },
       complete: { value: 'false', required: true },
       targetType: { value: undefined },
       phoneNumber: { value: '' }
     },
     inputs: 1,
-    outputs: 0,
+    outputs: 1,
     paletteLabel: 'SMS Send',
     align: 'right',
-    icon: 'envelope.svg',
+    icon: 'font-awesome/fa-envelope-o',
+    label: function () {
+      return `${(this.name || 'zte-sms-send')} \t🖂`;
+    },
 
     onadd: function() {
       if (this.name === '_DEFAULT_') {
@@ -68,17 +70,17 @@
     <input type="text" id="node-input-name" placeholder="Name">
   </div>
   <div class="form-row">
-    <label for="node-input-modem"><i class="fa fa-terminal"></i> Modem</label>
+    <label for="node-input-modem"><i class="fa fa-wifi"></i> Modem</label>
     <input id="node-input-modem" type="node-input-modem" style="width: 70%">
   </div>
   <div class="form-row">
-    <label for="node-input-typed-complete"><i class="fa fa-list"></i> SMS message</label>
+    <label for="node-input-typed-complete"><i class="fa fa-envelope-o"></i> SMS message</label>
     <input id="node-input-typed-complete" type="text">
     <input id="node-input-complete" type="hidden">
     <input id="node-input-targetType" type="hidden">
   </div>
   <div class="form-row">
-    <label for="node-input-phoneNumber"><i class="icon-tag"></i> Phone number</label>
+    <label for="node-input-phoneNumber"><i class="fa fa-mobile"></i> Phone number</label>
     <input type="text" id="node-input-phoneNumber">
   </div>
 </script>
