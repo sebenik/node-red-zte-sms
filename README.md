@@ -71,14 +71,15 @@ This is a convenience node that doesn't require modem configuration, but can be 
 - **Name**: Name of the node
 - **Phone number**: filter messages for allowed numbers. To specify 2 or more allowed numbers, delimit them with `;`
 
-Node has 5 outputs, that filters SMS messages by it's type.
+Node has 6 outputs, that filters SMS messages by it's type.
 - 1st output: **Read received SMS**
 - 2nd output: **Unread received SMS**
 - 3rd output: **Sent SMS**
 - 4th output: **Failed sent SMS**
 - 5th output: **Draft SMS**
+- 6th output: **Unfiltered**
 
-If you specified allowed phone number(s), node will exclude other messages.
+If you specified allowed phone number(s), 6th output (Unfiltered) will include messages from not allowed numbers, so you can potentially delete them. SMS messages from allowed number(s) will be filtered based on SMS type in first 5 outputs.
 
 ## zte-sms-mark node
 

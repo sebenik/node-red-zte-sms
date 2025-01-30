@@ -7,9 +7,15 @@
       phoneNumberWhiteList: { value: '' },
     },
     inputs: 1,
-    inputLabels: '',
-    outputs: 5,
-    outputLabels: ['Read received SMS', 'Unread received SMS', 'Sent SMS', 'Failed sent SMS', 'Draft SMS'],
+    outputs: 6,
+    outputLabels: [
+      'Read received SMS',
+      'Unread received SMS',
+      'Sent SMS',
+      'Failed sent SMS',
+      'Draft SMS',
+      'Unfiltered',
+    ],
     paletteLabel: 'SMS Filter',
     align: 'right',
     icon: 'font-awesome/fa-filter',
@@ -31,7 +37,7 @@
       <label for="node-input-name"><i class="icon-tag"></i> Name</label>
       <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <b>Only output SMS messages from below numbers.</b>
+    <b>Filter SMS messages from below number.</b>
     <p>To enter multiple numbers, delimit them with ;</p>
     <div class="form-row">
       <label for="node-input-phoneNumberWhiteList"><i class="fa fa-mobile"></i> Phone number</label>

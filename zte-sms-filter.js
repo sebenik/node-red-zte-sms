@@ -6,13 +6,13 @@ module.exports = function(RED) {
     this.phoneNumberWhiteList = this.config.phoneNumberWhiteList.trim().split(';').map(s => s.trim()).filter(Boolean);
 
     this.on('input', function (msg, send, done) {
-      const output = [[], [], [], [], []];
+      const output = [[], [], [], [], [], []];
       const sms = Array.isArray(msg.sms) ? msg.sms : [sms];
       delete msg.sms;
       sms.forEach((s) => {
-        if (this.phoneNumberWhiteList.length === 0 || this.phoneNumberWhiteList.includes(s.number)) {
-          output[parseInt(s.tag, 10)].push(s);
-        }
+        const outIndex = this.phoneNumberWhiteList.length === 0 || this.phoneNumberWhiteList.includes(s.number)
+          ? parseInt(s.tag, 10) : 5;
+        output[outIndex].push(s);
       });
       output.forEach((o, i) => {
         if (o.length > 0) {
